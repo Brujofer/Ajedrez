@@ -126,6 +126,25 @@ html, body {
   transition: transform 0.08s ease;
 }
 
+.square.anim-hide-dest .piece-holder {
+  visibility: hidden;
+}
+
+.move-ghost {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 500;
+  will-change: transform, opacity;
+}
+.move-ghost .piece-svg {
+  width: 82%;
+  height: 82%;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+}
+
 .square.selected::after {
   content: "";
   position: absolute;
@@ -353,6 +372,15 @@ html, body {
 .swatch-preview span:nth-child(2) { background: var(--sw-b); }
 .swatch-preview span:nth-child(3) { background: var(--sw-b); }
 .swatch-preview span:nth-child(4) { background: var(--sw-a); }
+
+.style-preview {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--text);
+  --piece-stroke: var(--bg);
+}
+.style-preview .piece-svg { width: 100%; height: 100%; display: block; }
 
 .switch { display: inline-block; }
 .switch input { display: none; }
