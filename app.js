@@ -11,7 +11,6 @@
     difficulty: 'medium',
     boardTheme: 'madera',
     pieceTheme: 'clasico',
-    pieceStyle: 'clasico',
     showLastMove: true,
     soundEnabled: true,
     playerColor: 'w',
@@ -97,7 +96,7 @@
 
   function pieceHTML(piece) {
     const cls = piece.c === 'w' ? 'piece-w' : 'piece-b';
-    return `<span class="piece-holder ${cls}">${ChessPieces.svg(piece.t, settings.pieceStyle)}</span>`;
+    return `<span class="piece-holder ${cls}">${ChessPieces.svg(piece.t)}</span>`;
   }
 
   // --- DOM refs --------------------------------------------------------
@@ -186,7 +185,7 @@
   function createGhost(pieceData, rect, opacity) {
     const ghost = document.createElement('div');
     ghost.className = 'move-ghost ' + (pieceData.c === 'w' ? 'piece-w' : 'piece-b');
-    ghost.innerHTML = ChessPieces.svg(pieceData.t, settings.pieceStyle);
+    ghost.innerHTML = ChessPieces.svg(pieceData.t);
     ghost.style.left = rect.left + 'px';
     ghost.style.top = rect.top + 'px';
     ghost.style.width = rect.width + 'px';
@@ -517,24 +516,6 @@
     }
   }
 
-  function renderPieceStyleGroup(containerEl) {
-    containerEl.innerHTML = '';
-    for (const key of ChessPieces.STYLES) {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'swatch' + (settings.pieceStyle === key ? ' active' : '');
-      btn.innerHTML = `<span class="style-preview">${ChessPieces.svg('n', key)}</span><span>${ChessPieces.STYLE_LABELS[key]}</span>`;
-      btn.addEventListener('click', () => {
-        settings.pieceStyle = key;
-        saveSettings();
-        for (const b of containerEl.querySelectorAll('.swatch')) b.classList.remove('active');
-        btn.classList.add('active');
-        renderBoard();
-      });
-      containerEl.appendChild(btn);
-    }
-  }
-
   function openSettings() {
     settingsPanel.classList.remove('hidden');
     renderSavedGamesList();
@@ -630,7 +611,6 @@
     renderSegmented(document.getElementById('difficulty-group'), 'difficulty');
     renderSegmented(document.getElementById('side-group'), 'playerColor');
     renderSwatchGroup(document.getElementById('board-theme-group'), 'boardTheme', () => { applyThemeVars(); renderBoard(); });
-    renderPieceStyleGroup(document.getElementById('piece-style-group'));
     renderSwatchGroup(document.getElementById('piece-theme-group'), 'pieceTheme', () => { applyThemeVars(); renderBoard(); });
 
     toggleHighlight.checked = settings.showLastMove;

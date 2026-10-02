@@ -373,15 +373,6 @@ html, body {
 .swatch-preview span:nth-child(3) { background: var(--sw-b); }
 .swatch-preview span:nth-child(4) { background: var(--sw-a); }
 
-.style-preview {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  color: var(--text);
-  --piece-stroke: var(--bg);
-}
-.style-preview .piece-svg { width: 100%; height: 100%; display: block; }
-
 .switch { display: inline-block; }
 .switch input { display: none; }
 .switch-track {

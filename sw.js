@@ -1,6 +1,6 @@
 // Cache de la app para que funcione sin conexión.
 // Subí la versión cada vez que cambies algún archivo, así el celu baja la versión nueva.
-const CACHE = 'ajedrez-v3';
+const CACHE = 'ajedrez-v4';
 const FILES = [
   './', 'index.html', 'style.css', 'app.js', 'chess-engine.js', 'ai.js', 'pieces.js', 'audio.js',
   'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png', 'icon-512-maskable.png',
