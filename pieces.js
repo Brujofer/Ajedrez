@@ -33,17 +33,14 @@ const ChessPieces = (() => {
       ${BASE}
     `,
     n: `
-      <path d="M28 86 C24 78 30 74 26 66 C22 59 29 55 25 48 C21 42 28 38 26 30
-                C25 23 30 17 38 13 C46 9 55 10 63 14 C72 18 80 24 84 31
-                C86 35 81 38 77 36 C73 41 68 43 64 47 C68 52 65 58 60 63
-                L58 72 C63 77 66 82 64 86 Z"/>
-      <path d="M32 16 L27 4 L40 12 Z"/>
-      <circle cx="52" cy="22" r="3" fill="var(--piece-stroke)"/>
-      <circle cx="78" cy="30" r="2.2" fill="var(--piece-stroke)"/>
-      <path d="M69 36 Q63 40 56 39" fill="none" stroke="var(--piece-stroke)" stroke-width="2.3" stroke-linecap="round"/>
-      <path d="M30 24 Q37 22 42 26" fill="none" stroke="var(--piece-stroke)" stroke-width="2.3" stroke-linecap="round"/>
-      <path d="M27 36 Q35 34 40 39" fill="none" stroke="var(--piece-stroke)" stroke-width="2.3" stroke-linecap="round"/>
-      <path d="M25 50 Q33 48 38 53" fill="none" stroke="var(--piece-stroke)" stroke-width="2.3" stroke-linecap="round"/>
+      <path d="M28 86 C20 78 32 72 22 64 C14 58 30 52 20 44 C12 38 28 32 22 24
+                C24 18 28 13 36 11 C46 8 56 10 64 16 C72 20 80 26 85 34
+                C82 40 76 42 70 40 C66 44 62 46 58 50 C62 56 58 64 54 70
+                L52 78 C56 82 60 84 58 86 Z"/>
+      <path d="M34 13 L28 2 L42 10 Z"/>
+      <circle cx="54" cy="20" r="3" fill="var(--piece-stroke)"/>
+      <path d="M80 29 Q87 28 86 35 Q85 40 79 38 Q75 36 78 32 Z" fill="var(--piece-stroke)"/>
+      <path d="M68 41 Q62 45 56 43" fill="none" stroke="var(--piece-stroke)" stroke-width="2.3" stroke-linecap="round"/>
       ${BASE}
     `,
     q: `
