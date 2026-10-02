@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#2b2420">
+<meta name="description" content="Ajedrez contra la IA, con tres niveles de dificultad y tableros personalizables">
+<title>Ajedrez</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ajedrez">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <h1>Ajedrez</h1>
+    <button id="btn-settings" class="icon-btn" aria-label="Ajustes" title="Ajustes">
+      <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M19.14 12.94a7.07 7.07 0 0 0 .06-.94 7.07 7.07 0 0 0-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.3 7.3 0 0 0-1.62-.94l-.36-2.54a.5.5 0 0 0-.5-.42h-3.84a.5.5 0 0 0-.5.42l-.36 2.54c-.59.24-1.13.56-1.62.94l-2.39-.96a.5.5 0 0 0-.6.22L2.71 8.84a.5.5 0 0 0 .12.64l2.03 1.58c-.04.3-.06.62-.06.94s.02.64.06.94l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.32.66.22l2.39-.96c.49.38 1.03.7 1.62.94l.36 2.54a.5.5 0 0 0 .5.42h3.84a.5.5 0 0 0 .5-.42l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.24.1.52.02.66-.22l1.92-3.32a.5.5 0 0 0-.12-.64zM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7z"/></svg>
+    </button>
+  </header>
+
+  <div class="status-bar" id="status-bar">Turno de blancas</div>
+
+  <div class="captured-row" id="captured-black" aria-label="Piezas negras capturadas"></div>
+
+  <div class="board-wrap">
+    <div id="board" class="board" role="grid" aria-label="Tablero de ajedrez"></div>
+  </div>
+
+  <div class="captured-row" id="captured-white" aria-label="Piezas blancas capturadas"></div>
+
+  <div class="controls">
+    <button id="btn-new" class="btn">Nueva partida</button>
+    <button id="btn-undo" class="btn btn-secondary">Deshacer</button>
+  </div>
+</div>
+
+<div id="promotion-overlay" class="overlay hidden">
+  <div class="promotion-box">
+    <p>Elegí la pieza para coronar</p>
+    <div class="promotion-options" id="promotion-options"></div>
+  </div>
+</div>
+
+<div id="settings-panel" class="settings-panel hidden">
+  <div class="settings-inner">
+    <div class="settings-header">
+      <h2>Ajustes</h2>
+      <button id="btn-close-settings" class="icon-btn" aria-label="Cerrar">✕</button>
+    </div>
+
+    <section class="setting-group">
+      <h3>Dificultad</h3>
+      <div class="segmented" id="difficulty-group">
+        <button data-value="easy" class="segment">Fácil</button>
+        <button data-value="medium" class="segment">Medio</button>
+        <button data-value="hard" class="segment">Difícil</button>
+      </div>
+    </section>
+
+    <section class="setting-group">
+      <h3>Jugar con</h3>
+      <div class="segmented" id="side-group">
+        <button data-value="w" class="segment">Blancas</button>
+        <button data-value="b" class="segment">Negras</button>
+      </div>
+      <p class="setting-hint">Se aplica al empezar una partida nueva.</p>
+    </section>
+
+    <section class="setting-group">
+      <h3>Color del tablero</h3>
+      <div class="swatch-group" id="board-theme-group"></div>
+    </section>
+
+    <section class="setting-group">
+      <h3>Color de las piezas</h3>
+      <div class="swatch-group" id="piece-theme-group"></div>
+    </section>
+
+    <section class="setting-group">
+      <h3>Resaltar último movimiento</h3>
+      <label class="switch">
+        <input type="checkbox" id="toggle-highlight">
+        <span class="switch-track"><span class="switch-thumb"></span></span>
+      </label>
+    </section>
+
+    <section class="setting-group">
+      <h3>Sonido</h3>
+      <label class="switch">
+        <input type="checkbox" id="toggle-sound">
+        <span class="switch-track"><span class="switch-thumb"></span></span>
+      </label>
+    </section>
+
+    <section class="setting-group">
+      <h3>Partidas guardadas</h3>
+      <button id="btn-save-game" class="btn btn-secondary" style="width:100%;">Guardar partida actual</button>
+      <div id="saved-games-list" class="saved-games-list"></div>
+    </section>
+  </div>
+</div>
+
+<div id="end-modal" class="overlay hidden">
+  <div class="promotion-box">
+    <p id="end-message">Fin de la partida</p>
+    <button id="btn-end-new" class="btn">Nueva partida</button>
+  </div>
+</div>
+
+<script src="chess-engine.js"></script>
+<script src="ai.js"></script>
+<script src="pieces.js"></script>
+<script src="audio.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
